@@ -1,0 +1,11 @@
+version: "3.9"
+services:
+  filebrowser:
+    image: filebrowser/filebrowser:s6
+    container_name: filebrowser
+    ports:
+      - 3000:80
+    volumes:
+      - /opt/volumes/filebrowser:/srv
+      - ./config:/config
+      - ./database:/database
