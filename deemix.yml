@@ -2,7 +2,8 @@ version: "3.9"
 services:
   deemix:
     image: ghcr.io/bambanah/deemix:latest
-    container_name: Deemix
+    container_name: deemix
+    restart: unless-stopped
     volumes:
       - ./config:/config
       - /opt/volumes/filebrowser/deemix:/downloads
