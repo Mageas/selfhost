@@ -1,0 +1,29 @@
+version: '3.9'
+services:
+  samba:
+    image: ghcr.io/servercontainers/samba
+    container_name: samba
+    restart: unless-stopped
+    ports:
+      - 137:137/udp
+      - 139:139
+      - 445:445
+    environment:
+      MODEL: 'TimeCapsule'
+      AVAHI_NAME: StorageServer
+
+      SAMBA_CONF_LOG_LEVEL: 3
+
+      GROUP_family: 1500
+
+      SAMBA_VOLUME_CONFIG_filebrowser: |
+        [Filebrowser Share]
+          path = /shares/filebrowser
+          guest ok = yes
+          browseable = yes
+          writable = yes
+          read only = no
+
+    volumes:
+      - /etc/avahi/services/:/external/avahi
+      - /opt/volumes/filebrowser:/shares/filebrowser
