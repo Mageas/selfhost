@@ -4,6 +4,8 @@ services:
     image: ghcr.io/bambanah/deemix:latest
     container_name: deemix
     restart: unless-stopped
+    environment:
+      - DEEMIX_SINGLE_USER=true
     volumes:
       - ./config:/config
       - /opt/volumes/filebrowser/deemix:/downloads
