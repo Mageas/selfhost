@@ -9,15 +9,14 @@ services:
       - 139:139
       - 445:445
     environment:
-      MODEL: 'TimeCapsule'
+      MODEL: TimeCapsule
       AVAHI_NAME: StorageServer
 
       SAMBA_CONF_LOG_LEVEL: 3
-
       GROUP_family: 1500
 
       SAMBA_VOLUME_CONFIG_filebrowser: |
-        [Filebrowser Share]
+        [Deemix]
           path = /shares/filebrowser
           guest ok = yes
           browseable = yes
@@ -26,4 +25,4 @@ services:
 
     volumes:
       - /etc/avahi/services/:/external/avahi
-      - /opt/volumes/filebrowser:/shares/filebrowser
+      - /opt/volumes/filebrowser/deemix:/shares/filebrowser
