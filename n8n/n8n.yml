@@ -1,4 +1,4 @@
-version: '3.9'
+version: "3.9"
 services:
   n8n:
     image: n8nio/n8n:latest
@@ -7,14 +7,15 @@ services:
     ports:
       - 5678:5678
     environment:
-      - N8N_HOST=n8n.example.com
+      - N8N_HOST=${SUBDOMAIN}.${DOMAIN_NAME}
       - N8N_PORT=5678
       - N8N_PROTOCOL=https
       - NODE_ENV=production
-      - WEBHOOK_URL=https://n8n.example.com/
-      - GENERIC_TIMEZONE=Europe/Paris
+      - WEBHOOK_URL=https://${WEBHOOK_URL}/
+      - GENERIC_TIMEZONE=${GENERIC_TIMEZONE}
+      - N8N_RUNNERS_ENABLED=true
+      - N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true
     volumes:
       - n8n-data:/home/node/.n8n
-
 volumes:
-  n8n-data:
+  n8n-data: null
